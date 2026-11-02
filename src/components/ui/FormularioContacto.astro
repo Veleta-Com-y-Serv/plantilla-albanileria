@@ -1,0 +1,45 @@
+---
+// Formulario corto de presupuesto, sin servidor: si hay email en site.yaml abre el programa de correo (mailto) con
+// los datos en el cuerpo. Si no hay email, se queda como muestra y lo avisa. Tres campos y nada más: nombre,
+// teléfono y qué necesitas (solo texto). `prefijo` hace únicos los id si hay más de un formulario en la página.
+import { site } from '../../data/site';
+interface Props { boton?: string; class?: string; asunto?: string; prefijo?: string; etiquetaMensaje?: string }
+const {
+  boton = 'Pedir presupuesto',
+  class: clase = '',
+  asunto = `Presupuesto desde la web de ${site.nombre}`,
+  prefijo = 'f',
+  etiquetaMensaje = '¿Qué necesitas?',
+} = Astro.props;
+const email = site.contacto.email;
+const accion = email ? `mailto:${email}?subject=${encodeURIComponent(asunto)}` : '';
+---
+
+<form class:list={['formulario', clase]} action={accion || undefined} method="post" enctype="text/plain">
+  <div class="formulario-doble">
+    <div class="campo">
+      <label for={`${prefijo}-nombre`}>Nombre</label>
+      <input id={`${prefijo}-nombre`} name="nombre" type="text" autocomplete="name" required />
+    </div>
+    <div class="campo">
+      <label for={`${prefijo}-telefono`}>Teléfono</label>
+      <input id={`${prefijo}-telefono`} name="telefono" type="tel" autocomplete="tel" inputmode="tel" required />
+    </div>
+  </div>
+  <div class="campo">
+    <label for={`${prefijo}-mensaje`}>{etiquetaMensaje}</label>
+    <textarea id={`${prefijo}-mensaje`} name="mensaje" rows="4" required></textarea>
+  </div>
+  <label class="campo-check">
+    <input type="checkbox" name="privacidad" required />
+    <span>He leído el <a href="/aviso-legal">aviso legal y la política de privacidad</a>.</span>
+  </label>
+  <button type="submit" class="btn-acento justify-self-stretch sm:justify-self-start">{boton}</button>
+  <p class="formulario-aviso">
+    {
+      email
+        ? 'Al enviar se abre tu programa de correo con el mensaje listo.'
+        : 'Formulario de muestra: todavía no envía mensajes. Usa el teléfono o el WhatsApp.'
+    }
+  </p>
+</form>

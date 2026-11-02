@@ -1,0 +1,36 @@
+---
+// Cifras: banda carbón con corte en diagonal arriba; cifras enormes en naranja separadas por barras inclinadas
+// (2 por fila en móvil, 4 en escritorio). Campos: items[] {titulo = la cifra, texto}. Sin cifras no se pinta.
+// Nunca se inventan: todo sale de site.yaml.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const cifras = s ? s.items.filter((i) => i.titulo) : [];
+---
+
+{
+  s && cifras.length > 0 && (
+    <section id={id} class="banda-carbon fondo-oscuro corte-arriba">
+      <div class="contenedor py-[var(--ritmo)] md:py-[var(--ritmo-md)]">
+        <Titular class="mb-10 md:mb-14" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        <ul class="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
+          {cifras.map((c) => (
+            <li class="cifra">
+              <p class="cifra-num">{c.titulo}</p>
+              {c.texto && <p class="cifra-texto">{c.texto}</p>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .cifra { position: relative; padding-left: 1.4rem; padding-right: .5rem; }
+  .cifra::before { content: ""; position: absolute; left: .2rem; top: .2rem; bottom: .2rem; width: .45rem; background: var(--c-acento); transform: skewX(-12deg); }
+  .cifra-num { font-family: var(--fuente-titulos); font-weight: 900; font-size: clamp(2.6rem, 7vw, 6rem); line-height: .9; color: var(--c-acento); overflow-wrap: anywhere; }
+  .cifra-texto { margin-top: .75rem; max-width: 16rem; font-family: var(--fuente-titulos); font-weight: 900; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: rgb(255 255 255 / .85); }
+</style>

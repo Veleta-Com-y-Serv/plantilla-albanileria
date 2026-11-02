@@ -1,0 +1,142 @@
+/* Albañil y pequeñas obras — estilo sólido de autónomo: gris cemento + naranja obra + blanco.
+   Bandas a sangre que alternan cemento claro con rayado de sección (el de la fábrica de ladrillo en los planos),
+   blanco, carbón y naranja con franjas diagonales; cortes en diagonal entre bandas; títulos pesados en mayúsculas;
+   etiquetas inclinadas como cinta de obra; servicios como una pared de bloques con su junta de mortero. */
+@import "tailwindcss";
+@import "./comun.css";
+@config "../../tailwind.config.mjs";
+
+:root {
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fuente-titulos: "Segoe UI Black", "Segoe UI Variable Display", system-ui, -apple-system, "Helvetica Neue", "Arial Black", sans-serif;
+  --radio: 0px; --ritmo: 4.25rem; --ritmo-md: 6.5rem; --ancho: 90rem;
+  --corte: clamp(1.5rem, 4vw, 4rem);
+  /* Derivados de los cuatro colores de site.yaml (siguen funcionando si el cliente los cambia) */
+  --c-cemento: color-mix(in srgb, var(--c-primario) 13%, var(--c-fondo));            /* cemento claro */
+  --c-cemento-2: color-mix(in srgb, var(--c-primario) 26%, var(--c-fondo));          /* junta de mortero */
+  --c-carbon: color-mix(in srgb, var(--c-texto) 86%, var(--c-primario));             /* bandas oscuras y pie */
+  --c-carbon-2: color-mix(in srgb, var(--c-texto) 70%, var(--c-primario));
+  --c-acento-texto: color-mix(in srgb, var(--c-acento) 62%, var(--c-texto));         /* naranja legible sobre claro */
+  --c-borde: color-mix(in srgb, var(--c-texto) 16%, transparent);
+  --c-tenue: color-mix(in srgb, var(--c-texto) 74%, var(--c-fondo));
+  /* Texto sobre el acento y sobre el primario: si el navegador sabe, blanco o negro según su luz. */
+  --c-sobre-acento: #141414;
+  --c-sobre-primario: #ffffff;
+}
+@supports (color: oklch(from red l c h)) {
+  :root {
+    --c-sobre-acento: oklch(from var(--c-acento) clamp(0, (0.64 - l) * 1000, 1) 0 0);
+    --c-sobre-primario: oklch(from var(--c-primario) clamp(0, (0.64 - l) * 1000, 1) 0 0);
+  }
+}
+
+@layer base {
+  html { scroll-padding-top: 5.5rem; }
+  body { font-family: var(--fuente-texto); font-size: 1.0625rem; line-height: 1.6; background: var(--c-fondo); }
+  h1, h2, h3 { font-family: var(--fuente-titulos); font-weight: 900; text-transform: uppercase; letter-spacing: -0.012em; line-height: .94; }
+}
+
+@layer components {
+  /* Etiqueta inclinada (antetítulo): un trozo de cinta naranja */
+  .etiqueta { display: inline-block; padding: .38rem .85rem; background: var(--c-acento); color: var(--c-sobre-acento); transform: skewX(-12deg); font-family: var(--fuente-titulos); font-size: .74rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; line-height: 1.2; }
+  .etiqueta > span { display: inline-block; transform: skewX(12deg); }
+  .titulo-seccion { font-size: clamp(2.1rem, 5.4vw, 4.75rem); margin-top: 1.1rem; color: var(--c-texto); }
+  .titular { max-width: 58rem; margin-bottom: 3rem; }
+  .titular--centro { margin-inline: auto; text-align: center; }
+  .titular-texto { margin-top: 1.25rem; max-width: 42rem; font-size: 1.125rem; color: var(--c-tenue); }
+  .fondo-oscuro { color: #fff; }
+  .fondo-oscuro .titulo-seccion { color: #fff; }
+  .fondo-oscuro .titular-texto { color: rgb(255 255 255 / .8); }
+  .fondo-acento { color: var(--c-sobre-acento); }
+  .fondo-acento .titulo-seccion { color: var(--c-sobre-acento); }
+  .fondo-acento .titular-texto { color: var(--c-sobre-acento); opacity: .88; }
+  .fondo-acento .etiqueta { background: var(--c-carbon); color: #fff; }
+
+  /* Bandas */
+  .banda-carbon { background-color: var(--c-carbon); color: #fff; }
+  .banda-cemento { background-color: var(--c-cemento); color: var(--c-texto); }
+  .banda-acento { background-color: var(--c-acento); color: var(--c-sobre-acento); }
+  /* Rayado de sección a 45° (así se dibuja la fábrica de ladrillo en un plano) */
+  .rayado { background-image: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--c-texto) 8%, transparent) 0 1px, transparent 1px 15px); }
+  .rayado-claro { background-image: repeating-linear-gradient(-45deg, rgb(255 255 255 / .06) 0 1px, transparent 1px 15px); }
+  /* Franjas diagonales anchas, tono sobre tono */
+  .franjas { background-image: repeating-linear-gradient(-45deg, rgb(0 0 0 / .07) 0 22px, transparent 22px 44px); }
+  /* Corte en diagonal arriba: la banda se monta sobre la anterior */
+  .corte-arriba { position: relative; z-index: 1; margin-top: calc(var(--corte) * -1); padding-top: var(--corte); clip-path: polygon(0 var(--corte), 100% 0, 100% 100%, 0 100%); }
+  .corte-arriba-inv { position: relative; z-index: 1; margin-top: calc(var(--corte) * -1); padding-top: var(--corte); clip-path: polygon(0 0, 100% var(--corte), 100% 100%, 0 100%); }
+
+  /* Botones: rectángulos macizos con el canto inferior más oscuro, en mayúsculas */
+  .btn, .btn-sec, .btn-acento, .btn-oscuro { border-radius: 0; min-height: 3.25rem; padding: .85rem 1.5rem; font-family: var(--fuente-titulos); font-size: .92rem; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease; }
+  .btn-acento, .btn-oscuro { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; line-height: 1.2; text-decoration: none; cursor: pointer; text-align: center; border: 0; }
+  .btn { background: var(--c-primario); color: var(--c-sobre-primario); box-shadow: inset 0 -4px 0 rgb(0 0 0 / .25); }
+  .btn-acento { background: var(--c-acento); color: var(--c-sobre-acento); box-shadow: inset 0 -4px 0 rgb(0 0 0 / .22); }
+  .btn-oscuro { background: var(--c-carbon); color: #fff; box-shadow: inset 0 -4px 0 rgb(0 0 0 / .45); }
+  .btn:hover, .btn-acento:hover, .btn-oscuro:hover { transform: translateY(-2px); }
+  .btn-sec { border: 3px solid currentColor; background: transparent; }
+  .btn-sec:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+  .btn .flecha, .btn-acento .flecha, .btn-sec .flecha, .btn-oscuro .flecha { transition: transform .15s ease; }
+  .btn:hover .flecha, .btn-acento:hover .flecha, .btn-sec:hover .flecha, .btn-oscuro:hover .flecha { transform: translateX(3px); }
+  .enlace-flecha { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; font-family: var(--fuente-titulos); font-weight: 900; font-size: .88rem; letter-spacing: .06em; text-transform: uppercase; text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: var(--c-acento); text-underline-offset: 6px; }
+
+  /* Cabecera blanca fija con canto de cemento */
+  .cabecera--tabique { position: sticky; top: 0; background: var(--c-fondo); color: var(--c-texto); border-bottom: 5px solid var(--c-cemento-2); }
+  .cabecera--tabique .contenedor { max-width: none; }
+  @media (min-width: 1024px) { .cabecera--tabique .contenedor { padding-inline: 2.5rem; } }
+  .cabecera--tabique .cabecera-fila { min-height: 4.5rem; gap: .6rem; }
+  .cabecera--tabique .marca-inicial { display: grid; place-items: center; flex: none; width: 2.7rem; height: 2.7rem; background: var(--c-acento); color: var(--c-sobre-acento); transform: skewX(-10deg); font-family: var(--fuente-titulos); font-weight: 900; font-size: 1.35rem; }
+  .cabecera--tabique .marca-inicial > span { transform: skewX(10deg); }
+  .cabecera--tabique .marca-nombre { font-family: var(--fuente-titulos); font-weight: 900; font-size: .92rem; line-height: 1.05; text-transform: uppercase; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  @media (min-width: 640px) { .cabecera--tabique .marca-nombre { font-size: 1.02rem; } }
+  .cabecera--tabique .cabecera-nav { gap: 1.5rem; }
+  .cabecera--tabique .cabecera-nav a { font-family: var(--fuente-titulos); font-size: .8rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; padding-block: .5rem; border-bottom: 3px solid transparent; }
+  .cabecera--tabique .cabecera-nav a:hover { border-color: var(--c-acento); }
+  .cabecera-telefono { display: none; align-items: center; gap: .5rem; flex: none; min-height: 2.75rem; text-decoration: none; font-family: var(--fuente-titulos); font-weight: 900; font-size: 1.05rem; white-space: nowrap; }
+  .cabecera-telefono svg { color: var(--c-acento-texto); }
+  @media (min-width: 1280px) { .cabecera-telefono { display: inline-flex; } }
+  .cabecera-whatsapp { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; flex: none; min-width: 2.75rem; min-height: 2.75rem; padding: .5rem; background: var(--c-carbon); color: #fff; text-decoration: none; font-family: var(--fuente-titulos); font-weight: 900; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+  .cabecera-whatsapp-texto { display: none; }
+  @media (min-width: 520px) { .cabecera-whatsapp { padding-inline: .9rem; } .cabecera-whatsapp-texto { display: inline; } }
+  .cabecera--tabique .cabecera-cta { min-height: 2.75rem; padding: .55rem 1.1rem; font-size: .8rem; }
+  .cabecera--tabique .menu-movil summary { min-height: 2.75rem; padding: .5rem .8rem; border: 3px solid var(--c-texto); font-family: var(--fuente-titulos); font-weight: 900; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+  .cabecera--tabique .menu-movil-panel { background: var(--c-fondo); padding: .5rem 1rem 1.25rem; border-bottom: 6px solid var(--c-acento); box-shadow: 0 24px 40px rgb(0 0 0 / .2); }
+  .cabecera--tabique .menu-movil-panel a { min-height: 3rem; display: flex; align-items: center; font-family: var(--fuente-titulos); font-weight: 900; font-size: 1.35rem; text-transform: uppercase; }
+  .cabecera--tabique .menu-movil-panel .btn-acento { margin-top: 1rem; justify-content: center; font-size: .92rem; border-bottom: 0; }
+
+  /* Bloque de icono inclinado */
+  .icono-bloque { display: grid; place-items: center; flex: none; width: 3.25rem; height: 3.25rem; background: var(--c-acento); color: var(--c-sobre-acento); transform: skewX(-10deg); }
+  .icono-bloque > svg { transform: skewX(10deg); }
+
+  /* Pie carbón con columnas */
+  .pie--tabique { background: var(--c-carbon); color: rgb(255 255 255 / .82); padding-top: 4.5rem; }
+  .pie--tabique .contenedor { max-width: var(--ancho); }
+  .pie--tabique .pie-rejilla { gap: 2.5rem; }
+  @media (min-width: 768px) { .pie--tabique .pie-rejilla { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .pie--tabique .pie-rejilla { grid-template-columns: 1.5fr 1fr 1fr 1.3fr; } }
+  .pie--tabique .pie-nombre { color: #fff; font-family: var(--fuente-titulos); font-weight: 900; font-size: 1.7rem; line-height: 1; text-transform: uppercase; }
+  .pie--tabique .pie-titulo { font-family: var(--fuente-titulos); color: var(--c-acento); opacity: 1; font-weight: 900; letter-spacing: .1em; }
+  .pie--tabique .pie-redes a { border: 2px solid rgb(255 255 255 / .25); min-width: 2.75rem; min-height: 2.75rem; align-items: center; justify-content: center; }
+  .pie--tabique .pie-legal { font-size: .82rem; }
+  .pie-cinta { height: 1rem; background-color: var(--c-acento); background-image: repeating-linear-gradient(-45deg, rgb(0 0 0 / .14) 0 10px, transparent 10px 20px); }
+
+  /* Barra fija inferior en móvil: Llamar / WhatsApp */
+  .barra-movil { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; box-shadow: 0 -6px 20px rgb(0 0 0 / .18); }
+  .barra-movil a { display: flex; align-items: center; justify-content: center; gap: .55rem; min-height: 3.5rem; font-family: var(--fuente-titulos); font-weight: 900; font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; text-decoration: none; }
+  .barra-movil-llamar { background: var(--c-acento); color: var(--c-sobre-acento); }
+  .barra-movil-whatsapp { background: var(--c-carbon); color: #fff; }
+  body:has(.barra-movil) { padding-bottom: 3.5rem; }
+  @media (min-width: 768px) {
+    .barra-movil { display: none; }
+    body:has(.barra-movil) { padding-bottom: 0; }
+  }
+
+  /* Formulario */
+  .formulario .campo label { font-family: var(--fuente-titulos); font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .formulario .campo input, .formulario .campo textarea { min-height: 3.1rem; background: #fff; color: #1b1c1e; border: 3px solid transparent; border-radius: 0; }
+  .formulario .campo input:focus, .formulario .campo textarea:focus { border-color: var(--c-acento); outline: none; }
+  .formulario-doble { display: grid; gap: 1rem; }
+  @media (min-width: 560px) { .formulario-doble { grid-template-columns: 1fr 1fr; } }
+  .formulario .campo-check a { text-decoration: underline; }
+  .formulario-claro .campo input, .formulario-claro .campo textarea { border-color: var(--c-cemento-2); }
+
+  .texto-largo h2 { font-size: 1.5rem; }
+}

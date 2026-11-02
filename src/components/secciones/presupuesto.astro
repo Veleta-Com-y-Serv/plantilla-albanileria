@@ -1,0 +1,61 @@
+---
+// Presupuesto: fila 50/50 a sangre. A la izquierda, banda naranja con franjas diagonales: titular, los pasos
+// (`items`) numerados en bloques inclinados, la `nota` («Sin compromiso») y el botón `cta` (WhatsApp o
+// formulario). A la derecha, banda carbón con el formulario corto (nombre, teléfono y qué necesitas).
+// Campos: antetitulo, titulo, texto, items[] {titulo, texto}, nota, cta, boton_formulario.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const pasos = s ? s.items.filter((i) => i.titulo) : [];
+const botonForm = (typeof s?.boton_formulario === 'string' && s.boton_formulario) || 'Pedir presupuesto';
+const externo = (u = '') => /^https?:/.test(u);
+---
+
+{
+  s && (
+    <section id={id} class="grid lg:grid-cols-2">
+      <div class="banda-acento fondo-acento franjas flex justify-end px-4 py-[var(--ritmo)] sm:px-8 md:py-[var(--ritmo-md)] lg:px-14">
+        <div class="w-full max-w-[40rem]">
+          <Titular class="mb-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+          {pasos.length > 0 && (
+            <ol class="grid gap-5">
+              {pasos.map((p, i) => (
+                <li class="flex gap-4">
+                  <span class="paso-num" aria-hidden="true"><span>{i + 1}</span></span>
+                  <div>
+                    <p class="font-display text-[1.15rem] font-black uppercase leading-tight">{p.titulo}</p>
+                    {p.texto && <p class="mt-1 leading-snug">{p.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
+          {s.nota && <p class="presupuesto-nota">{s.nota}</p>}
+          {s.cta?.url && (
+            <p class="mt-8">
+              <a class="btn-oscuro" href={s.cta.url} {...(externo(s.cta.url) ? { rel: 'noopener', target: '_blank' } : {})}>
+                <Icono nombre={/wa\.me|whatsapp/i.test(s.cta.url) ? 'whatsapp' : 'mensaje'} tam={20} />
+                {s.cta.texto}
+              </a>
+            </p>
+          )}
+        </div>
+      </div>
+      <div class="banda-carbon fondo-oscuro rayado-claro px-4 py-[var(--ritmo)] sm:px-8 md:py-[var(--ritmo-md)] lg:px-14">
+        <div class="w-full max-w-[40rem]">
+          <FormularioContacto prefijo={`${id}-f`} boton={botonForm} />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .paso-num { display: grid; place-items: center; flex: none; width: 2.6rem; height: 2.6rem; background: var(--c-carbon); color: #fff; transform: skewX(-10deg); font-family: var(--fuente-titulos); font-weight: 900; font-size: 1.2rem; }
+  .paso-num > span { transform: skewX(10deg); }
+  .presupuesto-nota { display: inline-block; margin-top: 2rem; padding: .5rem 1rem; border: 3px solid currentColor; font-family: var(--fuente-titulos); font-weight: 900; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; transform: rotate(-2deg); }
+</style>

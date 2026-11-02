@@ -1,0 +1,66 @@
+---
+// Trabajos hechos: banda carbón con corte en diagonal arriba; titular en el contenedor y debajo las fotos grandes de
+// borde a borde de la ventana, sin márgenes (1 por fila en móvil, 2 en tableta, 3 en escritorio; la última fila
+// se estira para no dejar huecos). Cada foto lleva la duración en una cinta naranja inclinada y, abajo, lugar,
+// título y texto. Campos: trabajos[] {titulo, texto, lugar, imagen, duracion}, cta opcional.
+// Sin trabajos, solo el titular y el botón.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const trabajos = s ? s.trabajos.filter((t) => t.titulo) : [];
+---
+
+{
+  s && (
+    <section id={id} class="banda-carbon fondo-oscuro rayado-claro corte-arriba-inv">
+      <div class="contenedor grid gap-6 pb-12 pt-[var(--ritmo)] md:pb-16 md:pt-[var(--ritmo-md)] lg:grid-cols-12 lg:items-end">
+        <Titular class="mb-0 lg:col-span-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {s.cta?.url && (
+          <div class="lg:col-span-4 lg:justify-self-end">
+            <a class="btn-acento" href={s.cta.url}>{s.cta.texto}<Icono nombre="flecha" tam={18} class="flecha" /></a>
+          </div>
+        )}
+      </div>
+      {trabajos.length > 0 && (
+        <ul class="obras">
+          {trabajos.map((t) => (
+            <li class="obra">
+              <Imagen src={t.imagen || '/placeholders/obra.svg'} alt={t.titulo} ancho={1200} alto={900} respaldo="/placeholders/obra.svg" class="absolute inset-0 h-full w-full object-cover" />
+              {t.duracion && (
+                <p class="obra-cinta">
+                  <span><Icono nombre="reloj" tam={16} />{t.duracion}</span>
+                </p>
+              )}
+              <div class="obra-pie">
+                {t.lugar && <p class="obra-lugar"><Icono nombre="mapa" tam={15} />{t.lugar}</p>}
+                <h3 class="mt-2 text-[1.5rem] leading-[.98] md:text-[1.75rem]">{t.titulo}</h3>
+                {t.texto && <p class="obra-texto">{t.texto}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      {trabajos.length === 0 && <div class="pb-[var(--ritmo)]" />}
+    </section>
+  )
+}
+
+<style>
+  .obras { display: flex; flex-wrap: wrap; }
+  .obra { position: relative; flex: 1 1 100%; min-height: 22rem; overflow: hidden; isolation: isolate; display: flex; align-items: flex-end; }
+  @media (min-width: 700px) { .obra { flex-basis: 50%; min-height: 26rem; } }
+  @media (min-width: 1100px) { .obra { flex-basis: 33.334%; min-height: 32rem; } }
+  .obra :global(img) { z-index: -2; transition: transform .5s ease; }
+  .obra::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgb(0 0 0 / .86) 0%, rgb(0 0 0 / .35) 45%, transparent 70%); }
+  .obra:hover :global(img) { transform: scale(1.04); }
+  .obra-cinta { position: absolute; top: 1.1rem; left: -.5rem; padding: .45rem 1rem .45rem 1.4rem; background: var(--c-acento); color: var(--c-sobre-acento); transform: skewX(-12deg); font-family: var(--fuente-titulos); font-weight: 900; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
+  .obra-cinta > span { display: inline-flex; align-items: center; gap: .45rem; transform: skewX(12deg); }
+  .obra-pie { width: 100%; padding: 1.5rem 1rem 1.75rem; }
+  @media (min-width: 768px) { .obra-pie { padding: 2rem 2rem 2.25rem; } }
+  .obra-lugar { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--fuente-titulos); font-size: .78rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: var(--c-acento); }
+  .obra-texto { margin-top: .6rem; max-width: 32rem; color: rgb(255 255 255 / .82); font-size: .98rem; }
+</style>

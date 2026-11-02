@@ -1,0 +1,169 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+nombre: Obras Julián Robles
+eslogan: Albañil en Talavera de la Reina y su comarca. Pequeñas obras bien hechas.
+sector: albanil
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = inicial + nombre en texto.
+colores:
+  primario: "#585d62"
+  acento: "#f26a1b"
+  fondo: "#ffffff"
+  texto: "#1f2123"
+contacto:
+  telefono: "925 81 47 26"
+  email: hola@obrasjulianrobles.es
+  direccion: "Calle Carnicerías 14, 45600 Talavera de la Reina (Toledo)"
+  horario: Lunes a viernes de 8:00 a 19:00. Sábados por la mañana para visitas.
+  whatsapp: "+34 655 21 87 43"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: https://www.facebook.com/
+  linkedin: ""
+menu:
+  - { texto: Qué hago, url: "/#servicios" }
+  - { texto: Trabajos, url: "/#trabajos" }
+  - { texto: Zonas, url: "/#zonas" }
+  - { texto: Opiniones, url: "/#opiniones" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Pide presupuesto, url: "/#presupuesto" }
+seo:
+  titulo: Obras Julián Robles · Albañil en Talavera de la Reina
+  descripcion: "Albañil autónomo en Talavera de la Reina: tabiques, solados, alicatados, tejados y muros. Presupuesto cerrado sin compromiso. Llama o escribe por WhatsApp."
+  tipo: GeneralContractor   # tipo de schema.org
+marca_pie: true   # «Web creada con NoExpertise» en el pie
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Soy Julián, albañil en Talavera desde 2008
+    titulo: Pequeñas obras bien hechas, a la primera
+    texto: "Tabiques, solados, alicatados, tejados y muros. Voy yo a verlo, te doy un precio cerrado y trabajo yo en tu obra, sin subcontratas."
+    imagen: /fotos/hero.jpg
+    cta: { texto: Pide presupuesto, url: "/#presupuesto" }
+    cta_secundario: { texto: Ver trabajos, url: "/#trabajos" }
+    items:   # compromisos bajo los botones (titulo, icono)
+      - { titulo: Presupuesto sin compromiso, icono: documento }
+      - { titulo: Precio cerrado por escrito, icono: euro }
+      - { titulo: Obra limpia al terminar, icono: check }
+
+  servicios:
+    activa: true
+    antetitulo: Qué hago
+    titulo: Obra pequeña y mediana, de principio a fin
+    texto: "Trabajo para particulares, comunidades y pequeños negocios. Si no es lo mío, te lo digo y te paso el contacto de alguien de confianza."
+    cta: { texto: Cuéntame tu obra, url: "/#presupuesto" }
+    items:
+      - { titulo: Tabiques y distribución, texto: "Abro, cierro y muevo tabiques de ladrillo o placa. Remates de yeso incluidos.", icono: ladrillos }
+      - { titulo: Solados, texto: "Suelos de cerámica, gres porcelánico y piedra. Nivelo antes para que no baile ni una pieza.", icono: superficie }
+      - { titulo: Alicatados, texto: "Cocinas, baños y terrazas. Corto a medida y dejo las juntas rectas.", icono: nivel }
+      - { titulo: Tejados y goteras, texto: "Retejados, canalones y cumbreras. Reviso el tejado y te enseño fotos de lo que veo.", icono: casa }
+      - { titulo: Muros y vallas, texto: "Muros de bloque y de mampostería, cerramientos de parcela y pequeños muros de contención.", icono: herramienta }
+      - { titulo: Arreglos y reparaciones, texto: "Grietas, humedades, escalones, fachadas y esos remates que se quedaron a medias.", icono: casco }
+
+  trabajos:
+    activa: true
+    antetitulo: Trabajos hechos
+    titulo: Lo último que he terminado
+    texto: Fotos de obras de los últimos meses en Talavera y los pueblos de alrededor.
+    cta: { texto: Quiero algo así, url: "/#presupuesto" }
+    trabajos:
+      - { titulo: Tabique nuevo en un salón, lugar: "Talavera · Patrocinio", duracion: 2 días, texto: "Separé el salón en dos para ganar un dormitorio, con puerta y remates de yeso.", imagen: /fotos/trabajo-tabique.jpg }
+      - { titulo: Solado de cocina, lugar: Pepino, duracion: 3 días, texto: "Levanté el suelo antiguo, nivelé con mortero y coloqué gres porcelánico gris.", imagen: /fotos/trabajo-solado.jpg }
+      - { titulo: Alicatado de baño, lugar: "Talavera · El Pilar", duracion: 4 días, texto: "Azulejo blanco en paredes, plato de ducha nuevo y juntas recién rejuntadas.", imagen: /fotos/trabajo-alicatado.jpg }
+      - { titulo: Retejado de casa de pueblo, lugar: Calera y Chozas, duracion: 1 semana, texto: "Teja árabe recuperada, lámina impermeable debajo y canalón nuevo.", imagen: /fotos/trabajo-tejado.jpg }
+      - { titulo: Muro de cerramiento, lugar: Cazalegas, duracion: 5 días, texto: "Treinta metros de muro de bloque con albardilla y pilares para la puerta.", imagen: /fotos/trabajo-muro.jpg }
+      - { titulo: Escalera de patio en piedra, lugar: Velada, duracion: 3 días, texto: "Peldaños de piedra sobre base de hormigón y barandilla preparada.", imagen: /fotos/trabajo-escalera.jpg }
+
+  garantias:
+    activa: true
+    antetitulo: Mis garantías
+    titulo: Lo que te prometo y cumplo
+    texto: Sin letra pequeña. Lo que hablamos lo pongo por escrito en el presupuesto.
+    items:
+      - { titulo: Precio cerrado, texto: "El presupuesto que firmas es lo que pagas. Si aparece algo, te lo enseño antes de tocarlo.", icono: euro }
+      - { titulo: Fecha de inicio y de fin, texto: "Te digo qué días estaré en tu casa y los cumplo. Si llueve en un tejado, te aviso.", icono: calendario }
+      - { titulo: Trabajo yo, texto: "El que va a verlo es el que hace la obra. Sin subcontratas ni sorpresas.", icono: casco }
+      - { titulo: Limpio cada día, texto: "Protejo suelos y muebles, recojo escombro y me llevo los restos al punto limpio.", icono: check }
+
+  proceso:
+    activa: true
+    antetitulo: Cómo trabajo
+    titulo: De la llamada a la obra terminada
+    texto: Cinco pasos y siempre sabes en cuál estamos.
+    items:
+      - { titulo: Me llamas o me escribes, texto: "Cuéntame qué necesitas por teléfono o por WhatsApp." }
+      - { titulo: Voy a verlo, texto: "Paso por tu casa, mido y te explico cómo lo haría." }
+      - { titulo: Presupuesto cerrado, texto: "Te lo mando por escrito en dos o tres días, con fechas." }
+      - { titulo: Obra, texto: "Protejo, trabajo y recojo cada día. Te mando fotos si no estás." }
+      - { titulo: Repaso final, texto: "Revisamos juntos la obra y no me voy hasta que esté a tu gusto." }
+
+  zonas:
+    activa: true
+    antetitulo: Dónde trabajo
+    titulo: Talavera y 40 km alrededor
+    texto: "Tierras de Talavera, La Jara y la Campana de Oropesa. Si tu pueblo no está, pregúntame."
+    imagen: /fotos/zonas.jpg
+    items:
+      - { titulo: Talavera de la Reina }
+      - { titulo: Calera y Chozas }
+      - { titulo: Pepino }
+      - { titulo: Cazalegas }
+      - { titulo: Velada }
+      - { titulo: Oropesa }
+      - { titulo: La Pueblanueva }
+      - { titulo: Gamonal }
+      - { titulo: Segurilla }
+      - { titulo: Mejorada }
+      - { titulo: Cebolla }
+      - { titulo: Alcaudete de la Jara }
+
+  cifras:
+    activa: true
+    antetitulo: En números
+    titulo: Años de oficio, obra a obra
+    items:
+      - { titulo: "17", texto: años de oficio }
+      - { titulo: "420", texto: obras terminadas }
+      - { titulo: "48 h", texto: para darte presupuesto }
+      - { titulo: "2 años", texto: de garantía por escrito }
+
+  opiniones:
+    activa: true
+    antetitulo: Opiniones
+    titulo: Lo que dicen de mi trabajo
+    testimonios:
+      - { texto: "Vino a verlo el mismo día, nos dio un precio cerrado y terminó el baño en cuatro días. Lo dejó todo más limpio que antes.", autor: Mercedes G., nota: "Alicatado de baño, Talavera" }
+      - { texto: "Nos arregló el tejado antes de las lluvias y nos mandó fotos de cómo estaba por dentro. Muy serio.", autor: Antonio y Rosa, nota: "Retejado, Calera y Chozas" }
+      - { texto: "El muro quedó perfecto y a la semana estaba hecho. Ya le hemos llamado para la cochera.", autor: Luis M., nota: "Muro de cerramiento, Cazalegas" }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Lo que me preguntáis antes de empezar
+    preguntas:
+      - { pregunta: "¿Cobras por ir a ver la obra y hacer el presupuesto?", respuesta: "No. Voy a verlo, mido y te mando el presupuesto por escrito sin compromiso." }
+      - { pregunta: "¿Haces obras pequeñas, como un arreglo de una tarde?", respuesta: "Sí. Arreglos de grietas, escalones o un trozo de suelo también. Los junto en el mismo día con otras obras de la zona para que te salga mejor." }
+      - { pregunta: "¿Quién hace la obra?", respuesta: "Yo. Si hace falta fontanero o electricista, trabajo con gente de confianza de Talavera y lo coordino yo." }
+      - { pregunta: "¿Te encargas de los permisos del ayuntamiento?", respuesta: "Te digo qué permiso necesitas y te ayudo a pedirlo. Para obra menor suele bastar una comunicación previa." }
+      - { pregunta: "¿Qué garantía tiene el trabajo?", respuesta: "Te la pongo por escrito en la factura. Si algo falla por mi trabajo, vuelvo y lo arreglo sin coste." }
+
+  presupuesto:
+    activa: true
+    antetitulo: Presupuesto gratis
+    titulo: Cuéntame qué necesitas
+    texto: "Déjame tu nombre y tu teléfono y te llamo hoy o mañana para ir a verlo."
+    nota: Sin compromiso
+    boton_formulario: Quiero que me llames
+    cta: { texto: Escríbeme por WhatsApp, url: "https://wa.me/34655218743" }
+    items:
+      - { titulo: Me cuentas la obra, texto: "Por aquí, por teléfono o por WhatsApp." }
+      - { titulo: Voy a verla, texto: "Mido y te explico cómo lo haría." }
+      - { titulo: Precio cerrado, texto: "Por escrito y con fechas, en dos o tres días." }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Llámame y lo vemos
+    texto: "Si estoy en una obra y no lo cojo, te devuelvo la llamada en cuanto pueda. Por WhatsApp contesto antes."
+    cta: { texto: Enviar, url: "/#contacto" }

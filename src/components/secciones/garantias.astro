@@ -1,0 +1,39 @@
+---
+// Garantías: banda naranja a sangre con franjas diagonales tono sobre tono y corte en diagonal arriba. Titular a la
+// izquierda y los compromisos a la derecha en rejilla (1 columna en móvil, 2 desde tableta), cada uno con su marca
+// carbón inclinada y un filete grueso. Campos: items[] {titulo, texto, icono}. Sin items no se pinta.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const items = s ? s.items.filter((i) => i.titulo) : [];
+---
+
+{
+  s && items.length > 0 && (
+    <section id={id} class="banda-acento fondo-acento franjas corte-arriba">
+      <div class="contenedor grid gap-10 py-[var(--ritmo)] md:py-[var(--ritmo-md)] lg:grid-cols-12 lg:gap-14">
+        <Titular class="mb-0 lg:col-span-4" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        <ul class="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:col-span-8">
+          {items.map((it) => (
+            <li class="garantia">
+              <span class="garantia-marca" aria-hidden="true"><Icono nombre={it.icono || 'check'} tam={24} /></span>
+              <div>
+                <h3 class="text-[1.35rem] leading-none md:text-[1.6rem]">{it.titulo}</h3>
+                {it.texto && <p class="mt-2.5 text-[1.02rem] leading-snug">{it.texto}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .garantia { display: flex; gap: 1.1rem; padding-top: 1.25rem; border-top: 4px solid currentColor; }
+  .garantia-marca { display: grid; place-items: center; flex: none; width: 3rem; height: 3rem; background: var(--c-carbon); color: #fff; transform: skewX(-10deg); }
+  .garantia-marca :global(svg) { transform: skewX(10deg); }
+</style>

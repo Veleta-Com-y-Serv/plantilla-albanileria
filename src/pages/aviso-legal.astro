@@ -1,0 +1,43 @@
+---
+// Ejemplo de página adicional: usa el layout base y se enlaza desde el pie (o desde site.yaml → menu).
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+const c = site.contacto;
+---
+
+<Base titulo="Aviso legal y privacidad" descripcion={`Aviso legal y política de privacidad de ${site.nombre}.`}>
+  <header class="banda-carbon fondo-oscuro rayado-claro">
+    <div class="contenedor py-16 md:py-24">
+      <p class="etiqueta"><span>{site.nombre}</span></p>
+      <h1 class="titulo-seccion max-w-4xl">Aviso legal y privacidad</h1>
+    </div>
+  </header>
+  <div class="banda-cemento rayado">
+    <article class="contenedor grid gap-10 py-14 md:py-20 lg:grid-cols-12">
+      <p class="font-display text-sm font-black uppercase tracking-[.08em] text-[var(--c-acento-texto)] lg:col-span-3">{site.eslogan}</p>
+      <div class="texto-largo border-t-[6px] border-acento bg-fondo p-6 sm:p-10 lg:col-span-9">
+        <h2 class="mt-0">Quién soy</h2>
+        <p>
+          Esta web pertenece a {site.nombre}{c.direccion && `, con domicilio en ${c.direccion}`}. Puedes escribirme a {
+            c.email || 'mi correo de contacto'
+          }{c.telefono && ` o llamarme al ${c.telefono}`}.
+        </p>
+        <h2>Qué datos trato</h2>
+        <p>
+          Solo los que me envías al escribirme: nombre, teléfono y lo que necesitas. Los uso para responderte y preparar
+          tu presupuesto. No los cedo a nadie salvo obligación legal.
+        </p>
+        <h2>Cuánto tiempo los guardo</h2>
+        <p>El necesario para atender tu consulta y, si hacemos la obra, el que marque la ley para la facturación.</p>
+        <h2>Tus derechos</h2>
+        <p>
+          Puedes pedir acceso, rectificación o supresión de tus datos escribiendo a {c.email || 'mi correo'}. También
+          puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).
+        </p>
+        <h2>Cookies</h2>
+        <p>Esta web no usa cookies de seguimiento.</p>
+        <p class="mt-10"><a class="btn-acento" href="/">Volver al inicio</a></p>
+      </div>
+    </article>
+  </div>
+</Base>

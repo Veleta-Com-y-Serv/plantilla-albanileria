@@ -1,0 +1,94 @@
+---
+// Portada partida a sangre: a la izquierda, cemento claro con rayado de sección, etiqueta inclinada, título enorme en
+// mayúsculas, texto, botones «Llamar» (teléfono) y «WhatsApp» y los compromisos (`items`) con su marca naranja;
+// a la derecha, la foto de obra a sangre hasta el borde de la ventana con el canto cortado en diagonal y una cinta
+// naranja. En móvil, la foto arriba (corte diagonal abajo) y el texto debajo.
+// Sin teléfono ni WhatsApp, los botones son `cta` y `cta_secundario`; con ellos, esos dos van como enlaces.
+import { seccion, site, tel, whatsapp, mensajeWhatsapp } from '../../data/site';
+import { altHero } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string; primera?: boolean }
+const { id } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+const items = s ? s.items.filter((i) => i.titulo) : [];
+const hayDirectos = Boolean(c.telefono || c.whatsapp);
+const enlaces = s ? [s.cta, s.cta_secundario].filter((e) => e && e.url && e.texto) as { texto: string; url: string }[] : [];
+---
+
+{
+  s && (
+    <section id={id} class="hero-obra banda-cemento relative isolate grid overflow-hidden lg:min-h-[86svh] lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+      <div class="hero-foto relative min-h-[17rem] sm:min-h-[24rem] lg:order-2 lg:min-h-0">
+        <Imagen src={s.imagen || '/placeholders/hero.svg'} alt={altHero()} ancho={1600} alto={1200} prioridad respaldo="/placeholders/hero.svg" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div class="rayado relative flex items-center px-4 pb-14 pt-10 sm:px-8 md:pb-20 lg:order-1 lg:px-12 lg:py-20 xl:pl-[max(2.5rem,calc((100vw-90rem)/2+2rem))]">
+        <div class="w-full max-w-[44rem]">
+          {s.antetitulo && <p class="etiqueta"><span>{s.antetitulo}</span></p>}
+          <h1 class="mt-5 text-[clamp(2.6rem,6.2vw,6rem)] leading-[.9] text-texto">{s.titulo || site.nombre}</h1>
+          {s.texto && <p class="mt-6 max-w-[36rem] text-lg text-[var(--c-tenue)] md:text-xl">{s.texto}</p>}
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {hayDirectos ? (
+              <>
+                {c.telefono && (
+                  <a class="btn-acento text-base" href={tel(c.telefono)}>
+                    <Icono nombre="telefono" tam={20} />
+                    Llamar al {c.telefono}
+                  </a>
+                )}
+                {c.whatsapp && (
+                  <a class="btn-oscuro text-base" href={whatsapp(c.whatsapp, mensajeWhatsapp())} rel="noopener" target="_blank">
+                    <Icono nombre="whatsapp" tam={20} />
+                    WhatsApp
+                  </a>
+                )}
+              </>
+            ) : (
+              enlaces.map((e, i) => (
+                <a class={i === 0 ? 'btn-acento' : 'btn-oscuro'} href={e.url}>
+                  {e.texto}
+                  <Icono nombre="flecha" tam={18} class="flecha" />
+                </a>
+              ))
+            )}
+          </div>
+          {hayDirectos && enlaces.length > 0 && (
+            <p class="mt-4 flex flex-wrap gap-x-7">
+              {enlaces.map((e) => (
+                <a class="enlace-flecha" href={e.url}>
+                  {e.texto}
+                  <Icono nombre="flecha" tam={16} class="flecha" />
+                </a>
+              ))}
+            </p>
+          )}
+          {items.length > 0 && (
+            <ul class="mt-10 grid gap-x-6 gap-y-3 border-t-[3px] border-texto pt-6 sm:grid-cols-2 xl:grid-cols-3">
+              {items.map((it) => (
+                <li class="flex items-start gap-3">
+                  <span class="hero-marca" aria-hidden="true"><Icono nombre={it.icono || 'check'} tam={16} /></span>
+                  <span class="font-display text-[.95rem] font-black uppercase leading-tight">{it.titulo}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  /* Móvil: la foto arriba con el canto inferior en diagonal y una cinta naranja debajo */
+  .hero-foto { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%); }
+  .hero-foto::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2.5rem; background: linear-gradient(to top right, var(--c-acento) 0 46%, transparent 46.5%); pointer-events: none; }
+  .hero-marca { display: grid; place-items: center; flex: none; width: 1.6rem; height: 1.6rem; margin-top: -.1rem; background: var(--c-acento); color: var(--c-sobre-acento); transform: skewX(-10deg); }
+  /* Escritorio: la foto a la derecha hasta el borde, canto izquierdo en diagonal con cinta naranja */
+  /* Columnas 1.1fr / 1fr: la foto empieza en el 52,38 % y su canto sube hasta el 59,05 % (14 % de su ancho) */
+  @media (min-width: 1024px) {
+    .hero-foto { clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); }
+    .hero-foto::after { display: none; }
+    .hero-obra::before { content: ""; position: absolute; z-index: 1; inset: 0; background: var(--c-acento); clip-path: polygon(calc(59.05% - 1.6rem) 0, calc(59.05% + 2px) 0, calc(52.38% + 2px) 100%, calc(52.38% - 1.6rem) 100%); pointer-events: none; }
+  }
+</style>

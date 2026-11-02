@@ -1,0 +1,92 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: albanileria
+nombre: Albañil y pequeñas obras
+descripcion: "Web para albañiles autónomos: llamada y WhatsApp a mano, trabajos con fotos, zonas y presupuesto corto."
+sectores:
+  - { id: albanil, nombre: Albañil }
+  - { id: albanileria, nombre: Albañilería }
+  - { id: obras, nombre: Pequeñas obras }
+  - { id: alicatado, nombre: Alicatados y solados }
+  - { id: tejados, nombre: Tejados y cubiertas }
+  - { id: muros, nombre: Muros y cerramientos }
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: servicios, nombre: Qué hago }
+  - { id: trabajos, nombre: Trabajos hechos }
+  - { id: garantias, nombre: Garantías }
+  - { id: proceso, nombre: Cómo trabajo }
+  - { id: zonas, nombre: Zonas de trabajo }
+  - { id: cifras, nombre: Cifras }
+  - { id: opiniones, nombre: Opiniones }
+  - { id: preguntas, nombre: Preguntas frecuentes }
+  - { id: presupuesto, nombre: Presupuesto }
+  - { id: contacto, nombre: Contacto }
+estilo: solido
+plan_minimo: gratis
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-albanileria.noexpertise.com
+activa: true
+orden: 600
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: negocio
+    titulo: "Tú y tu oficio"
+    pregunta: "¿Cómo te llamas, cómo quieres que se llame tu web y qué obras haces?"
+    ayuda: "Cuéntame también en qué pueblo o ciudad trabajas y desde cuándo. Escribe como hablas con tus clientes."
+    tipo: texto
+    campos: [nombre, eslogan, seo.titulo, seo.descripcion, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.texto, secciones.hero.items]
+  - id: contacto
+    titulo: "Cómo te llaman"
+    pregunta: "¿A qué teléfono y a qué WhatsApp te escriben tus clientes? ¿Y a qué email?"
+    ayuda: "El teléfono y el WhatsApp salen en una barra fija en el móvil. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, redes.instagram, redes.facebook]
+  - id: servicios
+    titulo: "Qué haces"
+    pregunta: "¿Qué trabajos haces? Uno por línea: tabiques, solados, tejados, muros, arreglos…"
+    tipo: texto
+    campos: [secciones.servicios.titulo, secciones.servicios.texto, secciones.servicios.items]
+  - id: trabajos
+    titulo: "Trabajos hechos"
+    pregunta: "Cuéntame algunas obras que hayas terminado: qué hiciste, dónde y cuánto tardaste. Una por línea."
+    ayuda: "Las fotos de cada obra las pones luego en Contenido. Mejor sin caras."
+    tipo: lista
+    campos: [secciones.trabajos.trabajos]
+  - id: garantias
+    titulo: "Tus garantías"
+    pregunta: "¿Qué les prometes a tus clientes? Precio cerrado, fechas, limpieza, garantía por escrito…"
+    tipo: texto
+    campos: [secciones.garantias.titulo, secciones.garantias.texto, secciones.garantias.items]
+  - id: proceso
+    titulo: "Cómo trabajas"
+    pregunta: "¿Cómo es una obra contigo, desde que te llaman hasta que terminas?"
+    tipo: texto
+    campos: [secciones.proceso.titulo, secciones.proceso.texto, secciones.proceso.items]
+  - id: zonas
+    titulo: "Dónde trabajas"
+    pregunta: "¿En qué pueblos y comarcas trabajas? Escríbelos separados por comas."
+    tipo: texto
+    campos: [secciones.zonas.titulo, secciones.zonas.texto, secciones.zonas.items]
+  - id: preguntas
+    titulo: "Preguntas frecuentes"
+    pregunta: "¿Qué te preguntan siempre antes de encargarte una obra? Escribe cada pregunta y lo que respondes."
+    ayuda: "Es lo que citan Google y los asistentes cuando alguien busca un albañil en tu zona."
+    tipo: lista
+    campos: [secciones.preguntas.preguntas]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada de una obra tuya y, si quieres, una de tu zona."
+    ayuda: "Sube las tuyas o elige una del banco. Las que no cambies se quedan como están."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.zonas.imagen]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso

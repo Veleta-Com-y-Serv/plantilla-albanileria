@@ -1,0 +1,49 @@
+---
+// Zonas de trabajo: banda de cemento claro con rayado de sección. Fila 50/50: a la izquierda, titular y los pueblos
+// y comarcas como un muro de palabras en mayúsculas separadas por barras naranjas; a la derecha, la foto a sangre
+// hasta el borde de la ventana con el canto en diagonal. Sin foto, el muro de palabras ocupa todo el ancho.
+// Campos: items[] {titulo}, imagen, cta opcional.
+import { seccion } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const zonas = s ? s.items.filter((i) => i.titulo) : [];
+---
+
+{
+  s && (
+    <section id={id} class:list={['banda-cemento rayado relative', s.imagen && 'grid lg:grid-cols-2']}>
+      <div class:list={['py-[var(--ritmo)] md:py-[var(--ritmo-md)]', s.imagen ? 'px-4 sm:px-8 lg:pl-[max(2rem,calc((100vw-90rem)/2+2rem))] lg:pr-14' : 'contenedor']}>
+        <Titular class="mb-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {zonas.length > 0 && (
+          <ul class="muro" aria-label={s.titulo || 'Zonas'}>
+            {zonas.map((z) => <li>{z.titulo}</li>)}
+          </ul>
+        )}
+        {s.cta?.url && (
+          <a class="btn-oscuro mt-10" href={s.cta.url}>{s.cta.texto}<Icono nombre="flecha" tam={18} class="flecha" /></a>
+        )}
+      </div>
+      {s.imagen && (
+        <div class="zonas-foto relative min-h-[16rem] sm:min-h-[24rem]">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={900} respaldo="/placeholders/obra.svg" class="absolute inset-0 h-full w-full object-cover" />
+        </div>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .muro { display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem 0; font-family: var(--fuente-titulos); font-weight: 900; text-transform: uppercase; font-size: clamp(1.25rem, 2.6vw, 2rem); line-height: 1.15; }
+  .muro li { display: inline-flex; align-items: baseline; }
+  .muro li:not(:last-child)::after { content: "/"; margin-inline: .5rem; color: var(--c-acento-texto); }
+  .muro li:first-child { color: var(--c-acento-texto); }
+  .zonas-foto { clip-path: polygon(0 1.75rem, 100% 0, 100% 100%, 0 100%); }
+  @media (min-width: 1024px) {
+    .zonas-foto { clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); }
+  }
+</style>

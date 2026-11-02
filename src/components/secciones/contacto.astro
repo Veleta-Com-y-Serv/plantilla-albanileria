@@ -1,0 +1,75 @@
+---
+// Contacto: banda blanca. Titular y, a todo el ancho, el teléfono gigante en mayúsculas como en un cartel de obra,
+// con el botón de WhatsApp al lado; debajo, los datos en cuatro columnas entre filetes gruesos (WhatsApp, email,
+// dirección, horario). Si no hay una sección de presupuesto activa, añade el formulario corto en una banda carbón.
+// Campos: antetitulo, titulo, texto, cta (botón del formulario).
+import { seccion, site, tel, mapa, whatsapp, buscarSeccion, mensajeWhatsapp } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+const conFormulario = !buscarSeccion('presupuesto');
+const datos = [
+  c.whatsapp && { icono: 'whatsapp', etiqueta: 'WhatsApp', valor: c.whatsapp, url: whatsapp(c.whatsapp, mensajeWhatsapp()) },
+  c.email && { icono: 'correo', etiqueta: 'Email', valor: c.email, url: `mailto:${c.email}` },
+  c.direccion && { icono: 'mapa', etiqueta: 'Dirección', valor: c.direccion, url: mapa(c.direccion) },
+  c.horario && { icono: 'reloj', etiqueta: 'Horario', valor: c.horario, url: '' },
+].filter(Boolean) as { icono: string; etiqueta: string; valor: string; url: string }[];
+---
+
+{
+  s && (
+    <section id={id} class="bg-fondo">
+      <div class="contenedor py-[var(--ritmo)] md:py-[var(--ritmo-md)]">
+        <Titular class="mb-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {(c.telefono || c.whatsapp) && (
+          <div class="flex flex-col gap-5 border-y-4 border-texto py-6 lg:flex-row lg:items-center lg:justify-between">
+            {c.telefono && (
+              <a href={tel(c.telefono)} class="telefono-gigante" aria-label={`Llamar al ${c.telefono}`}>
+                <span class="icono-bloque"><Icono nombre="telefono" tam={26} /></span>
+                <span>{c.telefono}</span>
+              </a>
+            )}
+            {c.whatsapp && (
+              <a class="btn-oscuro self-start lg:self-auto" href={whatsapp(c.whatsapp, mensajeWhatsapp())} rel="noopener" target="_blank">
+                <Icono nombre="whatsapp" tam={20} />
+                Escríbeme por WhatsApp
+              </a>
+            )}
+          </div>
+        )}
+        {datos.length > 0 && (
+          <dl class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+            {datos.map((d) => (
+              <div class="min-w-0 border-l-[6px] border-acento pl-4">
+                <dt class="flex items-center gap-2 font-display text-xs font-black uppercase tracking-[.12em] text-[var(--c-tenue)]">
+                  <Icono nombre={d.icono} tam={16} />
+                  {d.etiqueta}
+                </dt>
+                <dd class="mt-1.5 break-words text-lg font-semibold leading-snug">
+                  {d.url ? <a href={d.url} class="hover:text-[var(--c-acento-texto)]" {...(d.url.startsWith('http') ? { rel: 'noopener', target: '_blank' } : {})}>{d.valor}</a> : d.valor}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+      {conFormulario && (
+        <div class="banda-carbon fondo-oscuro rayado-claro">
+          <div class="contenedor max-w-[56rem] py-[var(--ritmo)]">
+            <FormularioContacto prefijo={`${id}-f`} boton={s.cta?.texto || 'Enviar'} />
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .telefono-gigante { display: inline-flex; align-items: center; gap: 1rem; min-width: 0; text-decoration: none; font-family: var(--fuente-titulos); font-weight: 900; font-size: clamp(2rem, 9vw, 6.5rem); line-height: .9; letter-spacing: -0.02em; white-space: nowrap; }
+  .telefono-gigante:hover > span:last-child { color: var(--c-acento-texto); }
+  @media (max-width: 400px) { .telefono-gigante .icono-bloque { width: 2.6rem; height: 2.6rem; } }
+</style>

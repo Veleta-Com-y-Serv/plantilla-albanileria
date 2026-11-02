@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Icono from '../components/ui/Icono.astro';
+import { site, tel } from '../data/site';
+const telefono = site.contacto.telefono;
+---
+
+<Base titulo="Página no encontrada">
+  <section class="banda-cemento rayado">
+    <div class="contenedor grid min-h-[70svh] items-center gap-8 py-20 md:grid-cols-12 md:py-28">
+      <p class="font-display text-[clamp(6rem,24vw,17rem)] font-black leading-none text-acento md:col-span-6" aria-hidden="true">404</p>
+      <div class="md:col-span-6">
+        <p class="etiqueta"><span>Error 404</span></p>
+        <h1 class="titulo-seccion">Aquí falta un ladrillo</h1>
+        <p class="mt-5 text-lg text-[var(--c-tenue)]">Esta página no existe o ya no está. Vuelve al inicio o llámame directamente.</p>
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a class="btn-acento" href="/">Volver al inicio<Icono nombre="flecha" tam={18} class="flecha" /></a>
+          {
+            telefono && (
+              <a class="btn-oscuro" href={tel(telefono)}>
+                <Icono nombre="telefono" tam={18} />
+                {telefono}
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="pie-cinta" aria-hidden="true"></div>
+</Base>
