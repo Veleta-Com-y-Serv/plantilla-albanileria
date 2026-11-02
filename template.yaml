@@ -23,7 +23,7 @@ secciones:
   - { id: contacto, nombre: Contacto }
 estilo: solido
 plan_minimo: gratis
-version: 1.0.0
+version: 1.1.0
 base: astrowind
 demo_url: https://demo-plantilla-albanileria.noexpertise.com
 activa: true
@@ -31,6 +31,11 @@ orden: 600
 
 # Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
 # tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+# Páginas propias (docs/plantillas.md § Fichas por elemento y páginas por zona). Espejo en src/data/fichas.ts.
+fichas:
+  - { lista: servicios, campo: items, ruta: servicios, nombre: Servicio, tipo: Service }
+zonas:
+  ruta: zonas
 asistente:
   - id: negocio
     titulo: "Tú y tu oficio"

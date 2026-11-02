@@ -78,3 +78,14 @@ que lee quien (persona o agente) rediseñe la plantilla.
 - [ ] Fotos generadas y previews definitivas (paso de fotos; las de ahora son provisionales con placeholders).
 - [ ] Repo `Veleta-Com-y-Serv/plantilla-albanileria` con la etiqueta `v1.0.0`; en la plataforma,
   `config/plantillas.php` (`repos` y `refs`) y `php artisan plantillas:sync --demos`.
+
+## Páginas propias (fichas y zonas)
+Con la misma piel que la portada: cabecera y pie de la plantilla, migas (Inicio › Sección › Elemento), hero con la foto del
+elemento (sin foto, su icono), `detalle` en párrafos, tabla de datos, caja de contacto, galería (`imagenes`) y otros elementos
+de la misma lista; en las zonas, entrada, texto de la zona, servicios, trabajos del lugar, opiniones y contacto.
+
+Diseño de estas páginas: cabecera en banda de cemento con rayado de plano, etiqueta de cinta naranja y título gigante en
+mayúsculas; la foto lleva el canto en diagonal (sin foto, el icono en un bloque naranja). Cuerpo blanco con el `detalle`,
+tabla de datos con borde naranja y caja de presupuesto en carbón; galería en banda carbón con rayado claro; los otros
+servicios y los servicios de la zona, como la «pared» de bloques con su junta de mortero. La zona cierra con la banda naranja
+de franjas y los pueblos cercanos como botones de borde grueso. Esquinas vivas, sin sombras.

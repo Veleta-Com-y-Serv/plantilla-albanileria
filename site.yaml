@@ -54,12 +54,66 @@ secciones:
     texto: "Trabajo para particulares, comunidades y pequeños negocios. Si no es lo mío, te lo digo y te paso el contacto de alguien de confianza."
     cta: { texto: Cuéntame tu obra, url: "/#presupuesto" }
     items:
-      - { titulo: Tabiques y distribución, texto: "Abro, cierro y muevo tabiques de ladrillo o placa. Remates de yeso incluidos.", icono: ladrillos }
-      - { titulo: Solados, texto: "Suelos de cerámica, gres porcelánico y piedra. Nivelo antes para que no baile ni una pieza.", icono: superficie }
-      - { titulo: Alicatados, texto: "Cocinas, baños y terrazas. Corto a medida y dejo las juntas rectas.", icono: nivel }
-      - { titulo: Tejados y goteras, texto: "Retejados, canalones y cumbreras. Reviso el tejado y te enseño fotos de lo que veo.", icono: casa }
-      - { titulo: Muros y vallas, texto: "Muros de bloque y de mampostería, cerramientos de parcela y pequeños muros de contención.", icono: herramienta }
-      - { titulo: Arreglos y reparaciones, texto: "Grietas, humedades, escalones, fachadas y esos remates que se quedaron a medias.", icono: casco }
+      - titulo: Tabiques y distribución
+        texto: "Abro, cierro y muevo tabiques de ladrillo o placa. Remates de yeso incluidos."
+        icono: ladrillos
+        imagenes: "/fotos/trabajo-tabique.jpg"
+        detalle: |
+          Un tabique cambia cómo se vive una casa: separa un salón grande para ganar un dormitorio, abre una pared que tapaba la luz o cierra un hueco que ya no hace falta. Antes de tocar nada voy a verlo, miro qué pared es, qué hay dentro y cómo quieres que quede la distribución.
+
+          Levanto el tabique de ladrillo hueco o de placa, según el sitio y el uso. Dejo previstas las rozas para enchufes y puntos de luz, coloco el cerco de la puerta a plomo y remato con yeso para que la pared quede lista para pintar. Si hay que derribar, protejo suelos y muebles y me llevo el escombro.
+
+          Es un trabajo pensado para particulares con una reforma pequeña, para comunidades y para negocios que necesitan redistribuir un local. Lo habitual es que la obra se haga en pocos días y que al terminar la estancia esté recogida y barrida. Te digo el precio por escrito antes de empezar.
+      - titulo: Solados
+        texto: "Suelos de cerámica, gres porcelánico y piedra. Nivelo antes para que no baile ni una pieza."
+        icono: superficie
+        imagenes: "/fotos/trabajo-solado.jpg"
+        detalle: |
+          Un suelo bien puesto se nota cuando no se nota: sin piezas que suenen, sin resaltos en las juntas y con los cortes limpios contra la pared. Todo eso se decide antes de colocar la primera baldosa, por eso empiezo mirando el estado de la base.
+
+          Si hay un suelo antiguo, lo levanto y retiro el escombro. Reviso la base, nivelo con mortero donde haga falta y dejo secar lo que pida el material. Después coloco cerámica, gres porcelánico o piedra con el pegamento adecuado, reparto las piezas para que los cortes queden en los sitios menos visibles y rejunto al terminar.
+
+          Sirve para cocinas, salones, terrazas, patios y entradas, y lo mismo en una vivienda que en un pequeño local. Hablamos del material y del acabado que prefieres, te oriento sobre qué aguanta mejor cada zona de la casa y te dejo el presupuesto cerrado por escrito antes de empezar.
+      - titulo: Alicatados
+        texto: "Cocinas, baños y terrazas. Corto a medida y dejo las juntas rectas."
+        icono: nivel
+        imagenes: "/fotos/trabajo-alicatado.jpg"
+        detalle: |
+          En un baño o en una cocina el alicatado es lo primero que se ve y lo que más se usa. Tiene que quedar recto, bien sellado y con las juntas parejas, porque cualquier fallo se ve cada día y, además, deja pasar la humedad.
+
+          Preparo la pared, la dejo plana y marco la línea de partida con nivel para que las filas no se escapen. Coloco el azulejo con el pegamento que corresponde, corto a medida alrededor de enchufes, grifos y esquinas, y cuido que las piezas de borde queden en el lugar menos llamativo. Después rejunto, limpio y repaso los remates.
+
+          Lo hago en baños, cocinas, terrazas y zonas de lavadero, tanto en obra nueva como al cambiar un alicatado viejo. Te enseño las muestras y te ayudo a elegir tamaño y color de junta. Antes de empezar tienes por escrito qué incluye el presupuesto y qué días voy a estar en tu casa.
+      - titulo: Tejados y goteras
+        texto: "Retejados, canalones y cumbreras. Reviso el tejado y te enseño fotos de lo que veo."
+        icono: casa
+        imagenes: "/fotos/trabajo-tejado.jpg"
+        detalle: |
+          Una gotera casi nunca está donde se ve la mancha. El agua entra por una teja rota, una cumbrera suelta o un canalón atascado y recorre el tejado antes de caer en el techo, así que lo primero es subir y mirar con calma.
+
+          Reviso la cubierta entera y te mando fotos de lo que veo, para que entiendas el problema sin tener que subirte. Si basta con reponer tejas y rehacer una cumbrera, lo hago así. Si la cubierta está cansada, te propongo un retejado: recoloco o repongo la teja, pongo lámina impermeable debajo y dejo los canalones y bajantes funcionando.
+
+          Es un trabajo para casas de pueblo, naves pequeñas, cocheras y comunidades. Cuento con el tiempo: si llueve, te aviso y reorganizo los días en vez de dejarte el tejado a medias. Al terminar bajo el escombro y limpio el patio o la calle.
+      - titulo: Muros y vallas
+        texto: "Muros de bloque y de mampostería, cerramientos de parcela y pequeños muros de contención."
+        icono: herramienta
+        imagenes: "/fotos/trabajo-muro.jpg"
+        detalle: |
+          Un muro tiene que durar y, sobre todo, tiene que estar bien cimentado. Por eso empiezo por el terreno: replanteo la línea, abro la zanja y cuido la base antes de subir ni un bloque, sobre todo si el muro va a contener tierra.
+
+          Levanto muros de bloque, de mampostería o mixtos, con sus pilares, su remate y la albardilla que evita que el agua se meta por arriba. Si se trata de un cerramiento de parcela, dejo preparado el hueco y los pilares para la puerta o el portón. Los muros de contención pequeños llevan su drenaje para que el agua no empuje por detrás.
+
+          Lo pides para cerrar una finca, separar una cochera, sujetar un desnivel en el patio o arreglar una tapia que se ha venido abajo. Voy a ver el terreno, te explico lo que hace falta y te dejo el presupuesto cerrado y por escrito antes de abrir la zanja.
+      - titulo: Arreglos y reparaciones
+        texto: "Grietas, humedades, escalones, fachadas y esos remates que se quedaron a medias."
+        icono: casco
+        imagenes: "/fotos/trabajo-escalera.jpg"
+        detalle: |
+          Hay obras que no caben en un título: la grieta que reaparece, el escalón suelto, la humedad en la esquina o el remate que el anterior albañil dejó a medias. Para eso estoy: voy, lo miro y te digo qué es y cuánto cuesta.
+
+          Lo primero es entender de dónde viene el problema, porque una grieta tapada sin más vuelve a salir. Abro lo que haga falta, reparo la base, trato el punto de humedad y dejo la superficie lista para pintar. También rehago escalones, arreglo trozos de fachada, repongo peldaños de piedra y cierro huecos que han quedado sin acabar.
+
+          Sirve para viviendas, patios, portales y locales pequeños. Suelen ser trabajos cortos, que se hacen en una o dos visitas, y los preparo para molestarte lo menos posible. Si veo que hay algo más serio de fondo, te lo cuento con fotos antes de tocarlo y decides tú.
 
   trabajos:
     activa: true
@@ -103,14 +157,22 @@ secciones:
     antetitulo: Dónde trabajo
     titulo: Talavera y 40 km alrededor
     texto: "Tierras de Talavera, La Jara y la Campana de Oropesa. Si tu pueblo no está, pregúntame."
+    titulo_pagina: "Albañilería en {zona}"
+    texto_pagina: "Obras pequeñas y medianas en {zona}, con precio cerrado y por escrito, de la mano de {negocio}."
     imagen: /fotos/zonas.jpg
     items:
-      - { titulo: Talavera de la Reina }
-      - { titulo: Calera y Chozas }
-      - { titulo: Pepino }
-      - { titulo: Cazalegas }
-      - { titulo: Velada }
-      - { titulo: Oropesa }
+      - titulo: Talavera de la Reina
+        texto: "Es donde vivo y donde más obras hago: pisos, casas y locales de la ciudad y de sus barrios. Cambio tabiques, alicato baños y cocinas, coloco suelos y reparo tejados en casas antiguas del casco. Al estar aquí, puedo ir a verlo en el día, medir con calma y pasarte el presupuesto cerrado por escrito. Trabajo también para comunidades de vecinos que necesitan arreglar un portal, una fachada o un patio. Si tu obra está en un barrio o en una urbanización de las afueras, llámame o escríbeme por WhatsApp y lo vemos."
+      - titulo: Calera y Chozas
+        texto: "En Calera y Chozas hago sobre todo obra de casa de pueblo: retejados, canalones, arreglo de grietas y humedades, y cambios de distribución. Muchas de estas casas tienen tejado de teja árabe, y se puede recuperar la teja buena y poner lámina impermeable debajo. También levanto cercados de patio y cocheras. Voy a ver la obra, te enseño fotos de lo que encuentro y te doy un precio cerrado. Si tu casa está en un pueblo cercano, como Pepino o Cazalegas, pregúntame y lo organizamos."
+      - titulo: Pepino
+        texto: "En Pepino trabajo con particulares que reforman la cocina o el baño: levanto el suelo antiguo, nivelo la base y coloco gres porcelánico o cerámica, y alicato paredes con las juntas rectas. También hago pequeños arreglos de fachada, escalones y remates de patio. Voy a ver la obra sin compromiso, tomo medidas y te dejo el presupuesto por escrito antes de empezar. Si estás en un pueblo vecino, como Calera y Chozas o Talavera de la Reina, también me tienes cerca y puedo pasarme a verlo."
+      - titulo: Cazalegas
+        texto: "En Cazalegas me llaman mucho para cerramientos de parcela y muros: cimentación, bloque, pilares, albardilla y el hueco preparado para la puerta. También arreglo tapias que se han venido abajo y levanto pequeños muros de contención con su drenaje. Voy a ver el terreno, te explico qué hace falta y te presupuesto la obra completa. Si tu finca está en Velada, Calera y Chozas o en otro pueblo cercano, me das la dirección y vamos a verlo. Al terminar, limpio y me llevo el escombro."
+      - titulo: Velada
+        texto: "En Velada hago obras de casa y de patio: escaleras de piedra sobre base de hormigón, escalones, muros bajos y reparaciones de fachada. También coloco suelos en cocheras y terrazas, y alicato baños o cocinas cuando toca renovarlos. Voy yo a verlo, te explico lo que veo y te paso el precio cerrado por escrito. Si vives en un pueblo cercano, como Cazalegas o Talavera de la Reina, también trabajo allí. Escríbeme por WhatsApp con unas fotos y te digo cuándo puedo pasar."
+      - titulo: Oropesa
+        texto: "En Oropesa y su entorno trabajo en casas, naves pequeñas y locales: cambio tabiques, arreglo goteras y retejo, y repongo suelos y alicatados. También me llaman para reparar grietas, humedades y fachadas. Quedamos un día, voy a verlo, te enseño fotos de lo que veo y te dejo el presupuesto cerrado. Si la obra está en un pueblo cercano de la Campana, como La Pueblanueva, dímelo y lo vemos. Trabajo yo en tu obra, sin subcontratas, y dejo todo recogido cada día."
       - { titulo: La Pueblanueva }
       - { titulo: Gamonal }
       - { titulo: Segurilla }

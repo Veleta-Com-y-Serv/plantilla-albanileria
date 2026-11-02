@@ -2,12 +2,14 @@
 // Zonas de trabajo: banda de cemento claro con rayado de sección. Fila 50/50: a la izquierda, titular y los pueblos
 // y comarcas como un muro de palabras en mayúsculas separadas por barras naranjas; a la derecha, la foto a sangre
 // hasta el borde de la ventana con el canto en diagonal. Sin foto, el muro de palabras ocupa todo el ancho.
-// Campos: items[] {titulo}, imagen, cta opcional.
+// Las zonas con `texto` tienen página propia (/zonas/<slug>/) y su nombre es un enlace. Campos: items[] {titulo, texto},
+// imagen, cta opcional.
 import { seccion } from '../../data/site';
 import { altSeccion } from '../../lib/seo';
 import Titular from '../ui/Titular.astro';
 import Imagen from '../ui/Imagen.astro';
 import Icono from '../ui/Icono.astro';
+import { enlaceDe } from '../../lib/paginas';
 interface Props { id: string }
 const { id } = Astro.props;
 const s = seccion(id);
@@ -21,7 +23,7 @@ const zonas = s ? s.items.filter((i) => i.titulo) : [];
         <Titular class="mb-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
         {zonas.length > 0 && (
           <ul class="muro" aria-label={s.titulo || 'Zonas'}>
-            {zonas.map((z) => <li>{z.titulo}</li>)}
+            {zonas.map((z) => <li>{enlaceDe(z) ? <a href={enlaceDe(z)} class="muro-enlace">{z.titulo}</a> : z.titulo}</li>)}
           </ul>
         )}
         {s.cta?.url && (
@@ -42,6 +44,8 @@ const zonas = s ? s.items.filter((i) => i.titulo) : [];
   .muro li { display: inline-flex; align-items: baseline; }
   .muro li:not(:last-child)::after { content: "/"; margin-inline: .5rem; color: var(--c-acento-texto); }
   .muro li:first-child { color: var(--c-acento-texto); }
+  .muro-enlace { color: inherit; text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: var(--c-acento); text-underline-offset: 4px; display: inline-flex; align-items: center; min-height: 2.75rem; }
+  .muro-enlace:hover { color: var(--c-acento-texto); }
   .zonas-foto { clip-path: polygon(0 1.75rem, 100% 0, 100% 100%, 0 100%); }
   @media (min-width: 1024px) {
     .zonas-foto { clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); }
