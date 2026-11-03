@@ -8,6 +8,7 @@ Web para albañiles autónomos: llamada y WhatsApp a mano, trabajos con fotos, z
 - Pensada para un autónomo: primera persona, botón de WhatsApp en la cabecera, barra fija «Llamar / WhatsApp» en móvil, teléfono gigante y formulario de tres campos.
 - Diseño a ancho completo: gris cemento + naranja obra; hero partido con foto a sangre y canto diagonal, pared de bloques, fotos de trabajos de borde a borde, escalera de pasos, cortes y franjas diagonales. Brief en `DISEÑO.md`.
 - SEO de base incluido (`src/lib/seo.ts`): canónica, og:image, JSON-LD del negocio (`GeneralContractor`, con `areaServed` desde las zonas) y de las preguntas frecuentes, `robots.txt`, `sitemap.xml` y `llms.txt`; `noindex` si `seo.indexable: false`.
+- Varias páginas (opcional, `paginas:` en la raíz de `site.yaml`): Inicio + una página por entrada (`{ ruta, titulo, secciones: "a; b" }`, hasta 6) con el menú hecho solo; reparto recomendado en `template.yaml → paginas`. Sin la clave, una sola página larga.
 - Contenido editable en `site.yaml`; metadatos y guion del asistente en `template.yaml`; reglas para el agente en `CLAUDE.md`; fotos a generar en `fotos.json`.
 
 ```
